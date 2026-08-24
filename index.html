@@ -136,6 +136,13 @@
             position: relative;
             letter-spacing: 0.3px;
             cursor: pointer;
+            border: 2px solid transparent;
+        }
+        
+        .nav a:hover {
+            background: var(--light-blue);
+            color: var(--blue);
+            border-color: var(--purple);
         }
 
         .nav a::after {
@@ -253,11 +260,13 @@
             transition: var(--transition);
             letter-spacing: 0.3px;
             cursor: pointer;
+            border: 2px solid transparent;
         }
-
+        
         .mobile-menu-content a:hover {
             background: var(--light-blue);
             color: var(--blue);
+            border-color: var(--purple);
         }
 
         .mobile-menu-content a.cta-nav {
