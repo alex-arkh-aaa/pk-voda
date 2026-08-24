@@ -162,11 +162,6 @@
             width: 70%;
         }
 
-        .nav a:hover {
-            background: var(--light-blue);
-            color: var(--blue);
-        }
-
         .nav a.cta-nav {
             background: transparent;
             color: var(--purple);
@@ -279,11 +274,6 @@
             transition: var(--transition);
         }
         
-        .mobile-menu-content a.cta-nav:hover {
-            background: var(--purple);
-            color: var(--white);
-        }
-
         .mobile-menu-content a.cta-nav:hover {
             background: var(--purple);
             color: var(--white);
@@ -1441,8 +1431,18 @@
             if (e.target === this) closeMenu();
         });
 
+        // ===== ЗАКРЫТИЕ МЕНЮ ПРИ КЛИКЕ НА ССЫЛКУ =====
         document.querySelectorAll('.mobile-menu-content a').forEach(link => {
-            link.addEventListener('click', closeMenu);
+            link.addEventListener('click', function(e) {
+                // Не закрываем меню, если клик по кнопке "Оставить заявку" (она открывает попап)
+                if (this.id === 'ctaMobileOpen') {
+                    // Закрываем меню, но не блокируем открытие попапа
+                    closeMenu();
+                    return;
+                }
+                // Для обычных ссылок закрываем меню
+                closeMenu();
+            });
         });
 
         // ===== ПОП-АП ОКНО =====
@@ -1466,8 +1466,8 @@
 
         document.getElementById('ctaMobileOpen').addEventListener('click', function(e) {
             e.preventDefault();
-            closeMenu();
-            setTimeout(openModal, 400);
+            // Меню уже закрыто через событие выше
+            openModal();
         });
 
         document.getElementById('heroBtnOpen').addEventListener('click', openModal);
