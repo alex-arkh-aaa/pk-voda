@@ -1129,6 +1129,20 @@
                 font-size: 28px;
             }
         }
+
+        .mobile-menu-content a.cta-nav {
+            background: transparent;
+            color: var(--purple);
+            border: 2px solid var(--purple); /* <-- ЭТА СТРОЧКА ОБЕСПЕЧИТ ОБВОДКУ */
+            text-align: center;
+            margin-top: 12px;
+            font-weight: 700;
+        }
+        
+        .mobile-menu-content a.cta-nav:hover {
+            background: var(--purple);
+            color: var(--white);
+        }
     </style>
 </head>
 <body>
@@ -1382,7 +1396,7 @@
             <h2>Оставить заявку</h2>
             <p>Заполните поля, и мы свяжемся с вами</p>
 
-            <form action="https://formsubmit.co/ваша@почта.com" method="POST" id="modalForm">
+            <form action="https://formsubmit.co/cfifhappy@yandex.ru" method="POST" id="modalForm">
                 <div class="form-group">
                     <label for="modalName">Ваше имя *</label>
                     <input type="text" id="modalName" name="name" placeholder="Иван Петров" required />
