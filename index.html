@@ -3,15 +3,24 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>АкваЛайн — оптовые поставки воды 19 л</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
+    <title>Чистая Вода — оптовые поставки воды 19 л</title>
+
+    <!-- Подключаем шрифт Kharkiv-Tone (аналог, так как оригинал платный) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
     <style>
-        /* ===== ОБНУЛЕНИЕ И ПЕРЕМЕННЫЕ ===== */
+        /* ===== ПОДКЛЮЧЕНИЕ ШРИФТА ===== */
+        /* Используем похожий шрифт с настройками под Kharkiv-Tone */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+        @font-face {
+            font-family: 'Kharkiv-Tone';
+            src: local('Inter'), local('Arial Black');
+            font-weight: normal;
+            font-style: normal;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -23,18 +32,24 @@
             --blue: #1a4f8a;
             --light-blue: #e8f2fc;
             --sky-blue: #4a9be0;
+            --purple: #7c3aed;
+            --purple-light: #ede9fe;
+            --purple-dark: #5b21b6;
             --gray: #f8fafc;
             --dark-gray: #2d3748;
             --text: #1e293b;
             --shadow: 0 10px 30px -10px rgba(26, 79, 138, 0.15);
+            --shadow-purple: 0 10px 30px -10px rgba(124, 58, 237, 0.25);
             --radius: 16px;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        html { scroll-behavior: smooth; }
+        html {
+            scroll-behavior: smooth;
+        }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Kharkiv-Tone', 'Inter', sans-serif;
             color: var(--text);
             background: var(--gray);
             line-height: 1.6;
@@ -46,6 +61,23 @@
             padding: 0 24px;
         }
 
+        /* ===== ДЕКОРАТИВНЫЕ ЛИНИИ ===== */
+        .line-decoration {
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--sky-blue), var(--purple));
+            border-radius: 4px;
+            margin: 0 auto 20px;
+        }
+
+        .section-line {
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--purple-light), var(--sky-blue), var(--purple-light), transparent);
+            margin: 20px 0 40px;
+            opacity: 0.5;
+        }
+
         /* ===== ШАПКА / НАВИГАЦИЯ ===== */
         .header {
             background: var(--white);
@@ -53,7 +85,8 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            border-bottom: 3px solid var(--sky-blue);
+            border-bottom: 3px solid var(--purple);
+            position: relative;
         }
 
         .header .container {
@@ -68,10 +101,11 @@
             align-items: center;
             gap: 12px;
             font-size: 24px;
-            font-weight: 700;
+            font-weight: 800;
             color: var(--blue);
             text-decoration: none;
             letter-spacing: -0.5px;
+            flex-shrink: 0;
         }
 
         .logo i {
@@ -80,25 +114,49 @@
         }
 
         .logo span {
-            background: linear-gradient(135deg, var(--blue), var(--sky-blue));
+            background: linear-gradient(135deg, var(--blue), var(--purple));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
+        /* ===== МЕНЮ ДЛЯ ПК (СЛЕВА) ===== */
+        .nav-wrapper {
+            display: flex;
+            align-items: center;
+        }
+
         .nav {
             display: flex;
-            gap: 8px;
+            gap: 6px;
             align-items: center;
         }
 
         .nav a {
-            padding: 8px 20px;
+            padding: 8px 18px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 500;
             color: var(--text);
             transition: var(--transition);
             font-size: 15px;
+            position: relative;
+        }
+
+        .nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--sky-blue), var(--purple));
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+
+        .nav a:hover::after {
+            width: 70%;
         }
 
         .nav a:hover {
@@ -107,18 +165,26 @@
         }
 
         .nav a.cta-nav {
-            background: var(--blue);
-            color: var(--white);
-            padding: 10px 28px;
-            box-shadow: 0 4px 12px rgba(26, 79, 138, 0.25);
+            background: transparent;
+            color: var(--purple);
+            border: 2px solid var(--purple);
+            padding: 8px 24px;
+            box-shadow: none;
+            transition: var(--transition);
         }
 
         .nav a.cta-nav:hover {
-            background: var(--sky-blue);
+            background: var(--purple);
+            color: var(--white);
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(26, 79, 138, 0.3);
+            box-shadow: var(--shadow-purple);
         }
 
+        .nav a.cta-nav::after {
+            display: none;
+        }
+
+        /* ===== БУРГЕР-МЕНЮ (ПЛАВНОЕ) ===== */
         .burger {
             display: none;
             flex-direction: column;
@@ -127,6 +193,8 @@
             background: none;
             border: none;
             padding: 4px;
+            z-index: 1001;
+            position: relative;
         }
 
         .burger span {
@@ -138,11 +206,111 @@
             transition: var(--transition);
         }
 
+        /* Мобильное меню */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+        }
+
+        .mobile-menu.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-menu-content {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 280px;
+            height: 100vh;
+            background: var(--white);
+            padding: 80px 32px 40px;
+            box-shadow: 4px 0 30px rgba(0, 0, 0, 0.15);
+            transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            overflow-y: auto;
+        }
+
+        .mobile-menu.open .mobile-menu-content {
+            left: 0;
+        }
+
+        .mobile-menu-content a {
+            padding: 14px 20px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 17px;
+            color: var(--text);
+            transition: var(--transition);
+        }
+
+        .mobile-menu-content a:hover {
+            background: var(--light-blue);
+            color: var(--blue);
+        }
+
+        .mobile-menu-content a.cta-nav {
+            background: transparent;
+            color: var(--purple);
+            border: 2px solid var(--purple);
+            text-align: center;
+            margin-top: 12px;
+        }
+
+        .mobile-menu-content a.cta-nav:hover {
+            background: var(--purple);
+            color: var(--white);
+        }
+
+        .mobile-menu-close {
+            position: absolute;
+            top: 20px;
+            right: 24px;
+            font-size: 28px;
+            background: none;
+            border: none;
+            color: var(--text);
+            cursor: pointer;
+            padding: 8px;
+            transition: var(--transition);
+        }
+
+        .mobile-menu-close:hover {
+            transform: rotate(90deg);
+            color: var(--purple);
+        }
+
         /* ===== ГЕРОЙ ===== */
         .hero {
-            background: linear-gradient(135deg, var(--white) 0%, var(--light-blue) 100%);
+            background: linear-gradient(135deg, var(--white) 0%, var(--light-blue) 70%, var(--purple-light) 100%);
             padding: 80px 0;
             border-bottom: 1px solid rgba(26, 79, 138, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.06) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
         }
 
         .hero-grid {
@@ -150,11 +318,13 @@
             grid-template-columns: 1fr 1fr;
             gap: 60px;
             align-items: center;
+            position: relative;
+            z-index: 1;
         }
 
         .hero-content h1 {
             font-size: 44px;
-            font-weight: 700;
+            font-weight: 800;
             line-height: 1.2;
             color: var(--blue);
             margin-bottom: 20px;
@@ -162,7 +332,7 @@
         }
 
         .hero-content h1 .highlight {
-            background: linear-gradient(135deg, var(--sky-blue), var(--blue));
+            background: linear-gradient(135deg, var(--sky-blue), var(--purple));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -192,6 +362,7 @@
             transition: var(--transition);
             border: none;
             cursor: pointer;
+            font-family: inherit;
         }
 
         .btn-primary {
@@ -201,9 +372,9 @@
         }
 
         .btn-primary:hover {
-            background: var(--sky-blue);
+            background: var(--purple);
             transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(26, 79, 138, 0.4);
+            box-shadow: var(--shadow-purple);
         }
 
         .btn-outline {
@@ -225,7 +396,7 @@
         }
 
         .hero-image .bottle-wrapper {
-            background: linear-gradient(145deg, var(--white), var(--light-blue));
+            background: linear-gradient(145deg, var(--white), var(--purple-light));
             border-radius: 50%;
             width: 380px;
             height: 380px;
@@ -233,7 +404,18 @@
             justify-content: center;
             align-items: center;
             box-shadow: 0 30px 60px rgba(26, 79, 138, 0.12);
-            border: 2px solid rgba(74, 155, 224, 0.15);
+            border: 3px solid rgba(124, 58, 237, 0.15);
+            position: relative;
+        }
+
+        .hero-image .bottle-wrapper::after {
+            content: '';
+            position: absolute;
+            inset: -8px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--sky-blue), var(--purple));
+            opacity: 0.1;
+            z-index: -1;
         }
 
         .hero-image .bottle-wrapper i {
@@ -245,14 +427,15 @@
         /* ===== СЕКЦИИ ===== */
         .section {
             padding: 80px 0;
+            position: relative;
         }
 
         .section-title {
             font-size: 36px;
-            font-weight: 700;
+            font-weight: 800;
             color: var(--blue);
             text-align: center;
-            margin-bottom: 16px;
+            margin-bottom: 8px;
             letter-spacing: -0.5px;
         }
 
@@ -297,7 +480,7 @@
         }
 
         .production-text ul li i {
-            color: var(--sky-blue);
+            color: var(--purple);
             font-size: 20px;
             width: 28px;
             text-align: center;
@@ -316,7 +499,25 @@
             text-align: center;
             box-shadow: var(--shadow);
             transition: var(--transition);
-            border: 1px solid rgba(74, 155, 224, 0.08);
+            border: 1px solid rgba(124, 58, 237, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .production-image .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--sky-blue), var(--purple));
+            transform: scaleX(0);
+            transition: var(--transition);
+        }
+
+        .production-image .card:hover::before {
+            transform: scaleX(1);
         }
 
         .production-image .card:hover {
@@ -326,7 +527,9 @@
 
         .production-image .card i {
             font-size: 40px;
-            color: var(--sky-blue);
+            background: linear-gradient(135deg, var(--sky-blue), var(--purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             margin-bottom: 12px;
         }
 
@@ -341,11 +544,10 @@
             color: #64748b;
         }
 
-        /* ===== ПРЕИМУЩЕСТВА ДЛЯ БИЗНЕСА ===== */
+        /* ===== ПРЕИМУЩЕСТВА ===== */
         .business-features {
-            background: var(--white);
-            border-top: 1px solid rgba(26, 79, 138, 0.06);
-            border-bottom: 1px solid rgba(26, 79, 138, 0.06);
+            background: linear-gradient(180deg, var(--white), var(--purple-light), var(--white));
+            padding: 80px 0;
         }
 
         .features-grid {
@@ -356,21 +558,57 @@
 
         .feature-item {
             text-align: center;
-            padding: 24px 16px;
+            padding: 32px 20px;
             border-radius: var(--radius);
-            background: var(--gray);
+            background: var(--white);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(124, 58, 237, 0.06);
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        .feature-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .feature-item:nth-child(1).visible { transition-delay: 0.1s; }
+        .feature-item:nth-child(2).visible { transition-delay: 0.2s; }
+        .feature-item:nth-child(3).visible { transition-delay: 0.3s; }
+        .feature-item:nth-child(4).visible { transition-delay: 0.4s; }
+
+        .feature-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--sky-blue), var(--purple));
+            border-radius: 0 0 var(--radius) var(--radius);
+            opacity: 0;
             transition: var(--transition);
         }
 
+        .feature-item:hover::after {
+            opacity: 1;
+        }
+
         .feature-item:hover {
-            background: var(--light-blue);
-            transform: scale(1.02);
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-purple);
         }
 
         .feature-item .number {
             font-size: 40px;
-            font-weight: 700;
-            color: var(--sky-blue);
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--sky-blue), var(--purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             display: block;
             margin-bottom: 8px;
         }
@@ -384,61 +622,6 @@
         .feature-item p {
             font-size: 15px;
             color: #64748b;
-        }
-
-        /* ===== ОПТОВЫМ КЛИЕНТАМ (доп. блок) ===== */
-        .wholesale {
-            background: var(--light-blue);
-        }
-
-        .wholesale .container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
-        }
-
-        .wholesale-text h2 {
-            font-size: 34px;
-            color: var(--blue);
-            margin-bottom: 16px;
-        }
-
-        .wholesale-text p {
-            font-size: 17px;
-            color: #334155;
-            margin-bottom: 24px;
-        }
-
-        .wholesale-text ul {
-            list-style: none;
-        }
-
-        .wholesale-text ul li {
-            padding: 10px 0;
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            font-size: 16px;
-            border-bottom: 1px solid rgba(26, 79, 138, 0.08);
-        }
-
-        .wholesale-text ul li i {
-            color: var(--blue);
-            font-size: 20px;
-            width: 28px;
-            text-align: center;
-        }
-
-        .wholesale-image {
-            display: flex;
-            justify-content: center;
-        }
-
-        .wholesale-image i {
-            font-size: 160px;
-            color: var(--blue);
-            opacity: 0.3;
         }
 
         /* ===== КОНТАКТЫ ===== */
@@ -463,22 +646,23 @@
             border-radius: var(--radius);
             box-shadow: var(--shadow);
             transition: var(--transition);
-            border-left: 4px solid var(--sky-blue);
+            border-left: 4px solid var(--purple);
         }
 
         .contacts-info .contact-item:hover {
             transform: translateX(6px);
+            box-shadow: var(--shadow-purple);
         }
 
         .contacts-info .contact-item i {
             font-size: 24px;
-            color: var(--sky-blue);
+            color: var(--purple);
             width: 44px;
             height: 44px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: var(--light-blue);
+            background: var(--purple-light);
             border-radius: 50%;
         }
 
@@ -505,7 +689,7 @@
             padding: 40px;
             border-radius: var(--radius);
             box-shadow: var(--shadow);
-            border: 1px solid rgba(74, 155, 224, 0.08);
+            border: 1px solid rgba(124, 58, 237, 0.08);
         }
 
         .contacts-form h3 {
@@ -548,8 +732,8 @@
         .contacts-form textarea:focus,
         .contacts-form select:focus {
             outline: none;
-            border-color: var(--sky-blue);
-            box-shadow: 0 0 0 4px rgba(74, 155, 224, 0.15);
+            border-color: var(--purple);
+            box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.15);
             background: var(--white);
         }
 
@@ -565,7 +749,7 @@
 
         /* ===== ПОДВАЛ ===== */
         .footer {
-            background: var(--blue);
+            background: linear-gradient(135deg, var(--blue), var(--purple-dark));
             color: rgba(255, 255, 255, 0.7);
             padding: 40px 0;
             margin-top: 20px;
@@ -607,52 +791,144 @@
         }
 
         /* ===== АДАПТИВ ===== */
+        @media (min-width: 769px) {
+            /* Меню слева на ПК */
+            .header .container {
+                justify-content: flex-start;
+                gap: 40px;
+            }
+
+            .nav-wrapper {
+                flex: 1;
+                display: flex;
+                justify-content: flex-end;
+            }
+
+            .nav {
+                display: flex;
+                gap: 4px;
+            }
+
+            .nav a {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+
+            .nav a.cta-nav {
+                padding: 8px 20px;
+            }
+
+            .burger {
+                display: none !important;
+            }
+        }
+
         @media (max-width: 992px) {
-            .hero-grid { grid-template-columns: 1fr; text-align: center; }
-            .hero-content p { margin: 0 auto 32px; }
-            .hero-buttons { justify-content: center; }
-            .hero-image .bottle-wrapper { width: 260px; height: 260px; }
-            .hero-image .bottle-wrapper i { font-size: 140px; }
-            .production-grid { grid-template-columns: 1fr; }
-            .wholesale .container { grid-template-columns: 1fr; text-align: center; }
-            .wholesale-text ul { text-align: left; }
-            .contacts-grid { grid-template-columns: 1fr; }
-            .section-title { font-size: 30px; }
+            .hero-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-content p {
+                margin: 0 auto 32px;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-image .bottle-wrapper {
+                width: 260px;
+                height: 260px;
+            }
+
+            .hero-image .bottle-wrapper i {
+                font-size: 140px;
+            }
+
+            .production-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contacts-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 30px;
+            }
         }
 
         @media (max-width: 768px) {
-            .nav {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 80px;
-                left: 0;
-                width: 100%;
-                background: var(--white);
-                padding: 20px 24px;
-                box-shadow: var(--shadow);
-                gap: 8px;
-                border-top: 2px solid var(--light-blue);
+            /* Показываем бургер и прячем обычное меню */
+            .header .container {
+                justify-content: space-between;
             }
-            .nav.open { display: flex; }
-            .nav a { width: 100%; padding: 12px 20px; }
-            .nav a.cta-nav { width: 100%; text-align: center; }
-            .burger { display: flex; }
-            .hero-content h1 { font-size: 32px; }
-            .production-image { grid-template-columns: 1fr 1fr; }
-            .contacts-form { padding: 24px; }
-            .footer .container { flex-direction: column; text-align: center; }
-            .features-grid { grid-template-columns: 1fr 1fr; }
+
+            .nav-wrapper {
+                display: none;
+            }
+
+            .burger {
+                display: flex !important;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero-content h1 {
+                font-size: 32px;
+            }
+
+            .production-image {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .contacts-form {
+                padding: 24px;
+            }
+
+            .footer .container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr 1fr;
+            }
         }
 
         @media (max-width: 480px) {
-            .production-image { grid-template-columns: 1fr; }
-            .hero-image .bottle-wrapper { width: 200px; height: 200px; }
-            .hero-image .bottle-wrapper i { font-size: 100px; }
-            .hero-content h1 { font-size: 28px; }
-            .btn { padding: 14px 28px; font-size: 15px; }
-            .section { padding: 50px 0; }
-            .features-grid { grid-template-columns: 1fr; }
+            .production-image {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-image .bottle-wrapper {
+                width: 200px;
+                height: 200px;
+            }
+
+            .hero-image .bottle-wrapper i {
+                font-size: 100px;
+            }
+
+            .hero-content h1 {
+                font-size: 28px;
+            }
+
+            .btn {
+                padding: 14px 28px;
+                font-size: 15px;
+            }
+
+            .section {
+                padding: 50px 0;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -670,15 +946,31 @@
                 <span></span><span></span><span></span>
             </button>
 
-            <nav class="nav" id="navMenu">
-                <a href="#main">Главная</a>
-                <a href="#production">Наше производство</a>
-                <a href="#wholesale">Оптовым клиентам</a>
-                <a href="#contacts">Контакты</a>
-                <a href="#contacts" class="cta-nav">Оставить заявку</a>
-            </nav>
+            <div class="nav-wrapper">
+                <nav class="nav">
+                    <a href="#main">Главная</a>
+                    <a href="#production">Наше производство</a>
+                    <a href="#features">Наши преимущества</a>
+                    <a href="#contacts">Контакты</a>
+                    <a href="#contacts" class="cta-nav">Оставить заявку</a>
+                </nav>
+            </div>
         </div>
     </header>
+
+    <!-- ===== МОБИЛЬНОЕ МЕНЮ ===== -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-content">
+            <button class="mobile-menu-close" id="mobileMenuClose">
+                <i class="fas fa-times"></i>
+            </button>
+            <a href="#main">Главная</a>
+            <a href="#production">Наше производство</a>
+            <a href="#features">Наши преимущества</a>
+            <a href="#contacts">Контакты</a>
+            <a href="#contacts" class="cta-nav">Оставить заявку</a>
+        </div>
+    </div>
 
     <!-- ===== ГЛАВНАЯ ===== -->
     <section class="hero" id="main">
@@ -689,6 +981,7 @@
                         Надёжный поставщик<br />
                         <span class="highlight">питьевой воды 19 л</span> для бизнеса
                     </h1>
+                    <div class="line-decoration" style="margin-left: 0; margin-right: 0;"></div>
                     <p>
                         Работаем с оптовыми покупателями, логистическими компаниями
                         и розничными сетями. Стабильные поставки, полный пакет документов,
@@ -696,9 +989,9 @@
                     </p>
                     <div class="hero-buttons">
                         <a href="#contacts" class="btn btn-primary">
-                            <i class="fas fa-file-signature"></i> Запросить коммерческое предложение
+                            <i class="fas fa-file-signature"></i> Запросить КП
                         </a>
-                        <a href="#wholesale" class="btn btn-outline">
+                        <a href="#features" class="btn btn-outline">
                             <i class="fas fa-chevron-circle-right"></i> Узнать условия
                         </a>
                     </div>
@@ -716,9 +1009,12 @@
     <section class="section" id="production">
         <div class="container">
             <h2 class="section-title">Наше производство</h2>
+            <div class="line-decoration"></div>
             <p class="section-subtitle">
                 Современный завод полного цикла — от скважины до готовой продукции
             </p>
+
+            <div class="section-line"></div>
 
             <div class="production-grid">
                 <div class="production-text">
@@ -766,30 +1062,34 @@
         </div>
     </section>
 
-    <!-- ===== ПРЕИМУЩЕСТВА ДЛЯ БИЗНЕСА (цифры) ===== -->
-    <section class="section business-features">
+    <!-- ===== ПРЕИМУЩЕСТВА ===== -->
+    <section class="business-features" id="features">
         <div class="container">
-            <h2 class="section-title">Почему выбирают нас оптовые клиенты</h2>
+            <h2 class="section-title">Почему выбирают нас</h2>
+            <div class="line-decoration"></div>
             <p class="section-subtitle">
                 Мы ценим долгосрочные отношения и предлагаем стабильные условия для вашего бизнеса
             </p>
+
+            <div class="section-line"></div>
+
             <div class="features-grid">
-                <div class="feature-item">
+                <div class="feature-item" data-delay="0">
                     <span class="number">15+</span>
                     <h4>Лет на рынке</h4>
                     <p>Опыт поставок крупным заказчикам</p>
                 </div>
-                <div class="feature-item">
+                <div class="feature-item" data-delay="100">
                     <span class="number">5000</span>
                     <h4>Бутылей в день</h4>
                     <p>Среднесуточный объём производства</p>
                 </div>
-                <div class="feature-item">
+                <div class="feature-item" data-delay="200">
                     <span class="number">100%</span>
                     <h4>Гарантия качества</h4>
                     <p>Каждая партия сертифицирована</p>
                 </div>
-                <div class="feature-item">
+                <div class="feature-item" data-delay="300">
                     <span class="number">24/7</span>
                     <h4>Отгрузка</h4>
                     <p>Гибкий график под ваш график</p>
@@ -798,39 +1098,16 @@
         </div>
     </section>
 
-    <!-- ===== ОПТОВЫМ КЛИЕНТАМ ===== -->
-    <section class="section wholesale" id="wholesale">
-        <div class="container">
-            <div class="wholesale-text">
-                <h2>Работаем с оптом от 100 бутылей</h2>
-                <p>
-                    Мы понимаем специфику бизнеса и предлагаем выгодные условия для крупных заказчиков:
-                </p>
-                <ul>
-                    <li><i class="fas fa-check"></i> Индивидуальные цены и график поставок</li>
-                    <li><i class="fas fa-check"></i> Полный пакет закрывающих документов</li>
-                    <li><i class="fas fa-check"></i> Возможность самовывоза или доставка до вашего склада</li>
-                    <li><i class="fas fa-check"></i> Предоставление образцов для тестов</li>
-                    <li><i class="fas fa-check"></i> Постоянное наличие на складе</li>
-                </ul>
-                <br />
-                <a href="#contacts" class="btn btn-primary">
-                    <i class="fas fa-paper-plane"></i> Получить коммерческое предложение
-                </a>
-            </div>
-            <div class="wholesale-image">
-                <i class="fas fa-handshake"></i>
-            </div>
-        </div>
-    </section>
-
     <!-- ===== КОНТАКТЫ ===== -->
     <section class="section" id="contacts">
         <div class="container">
             <h2 class="section-title">Свяжитесь с нами</h2>
+            <div class="line-decoration"></div>
             <p class="section-subtitle">
                 Заполните форму, и наш менеджер свяжется с вами для обсуждения условий
             </p>
+
+            <div class="section-line"></div>
 
             <div class="contacts-grid">
                 <div class="contacts-info">
@@ -868,7 +1145,7 @@
                     <h3>Заявка для оптового заказа</h3>
                     <p>Заполните поля, и мы подготовим для вас персональное предложение</p>
 
-                    <!-- ⚠️ ЗДЕСЬ СМЕНИТЕ ACTION НА ВАШ СЕРВИС (например, FormSubmit) -->
+                    <!-- ⚠️ ЗДЕСЬ СМЕНИТЕ ACTION НА ВАШ СЕРВИС -->
                     <form action="https://formsubmit.co/ваша@почта.com" method="POST">
                         <div class="form-group">
                             <label for="company">Название компании *</label>
@@ -926,32 +1203,63 @@
 
     <!-- ===== СКРИПТ ===== -->
     <script>
-        // Бургер-меню
+        // ===== БУРГЕР-МЕНЮ (ПЛАВНОЕ) =====
         const burger = document.getElementById('burgerBtn');
-        const nav = document.getElementById('navMenu');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuClose = document.getElementById('mobileMenuClose');
 
-        burger.addEventListener('click', function () {
-            nav.classList.toggle('open');
-            const spans = this.querySelectorAll('span');
-            if (nav.classList.contains('open')) {
-                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
-                spans[1].style.opacity = '0';
-                spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
-            } else {
-                spans[0].style.transform = 'none';
-                spans[1].style.opacity = '1';
-                spans[2].style.transform = 'none';
+        function openMenu() {
+            mobileMenu.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMenu() {
+            mobileMenu.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        burger.addEventListener('click', openMenu);
+        mobileMenuClose.addEventListener('click', closeMenu);
+
+        // Закрытие по клику на фон
+        mobileMenu.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeMenu();
             }
         });
 
-        document.querySelectorAll('.nav a').forEach(link => {
-            link.addEventListener('click', () => {
-                nav.classList.remove('open');
-                const spans = burger.querySelectorAll('span');
-                spans[0].style.transform = 'none';
-                spans[1].style.opacity = '1';
-                spans[2].style.transform = 'none';
+        // Закрытие по клику на ссылки
+        document.querySelectorAll('.mobile-menu-content a').forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
+
+        // ===== АНИМАЦИЯ ПРИ СКРОЛЛИНГЕ =====
+        const featureItems = document.querySelectorAll('.feature-item');
+
+        function checkVisibility() {
+            featureItems.forEach(item => {
+                const rect = item.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+
+                if (rect.top < windowHeight - 80) {
+                    item.classList.add('visible');
+                }
             });
+        }
+
+        // Проверяем при загрузке и при скролле
+        window.addEventListener('load', () => {
+            setTimeout(checkVisibility, 200);
+        });
+
+        window.addEventListener('scroll', checkVisibility);
+        window.addEventListener('resize', checkVisibility);
+
+        // ===== ЗАКРЫТИЕ БУРГЕРА ПРИ РЕСАЙЗЕ НА ПК =====
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                closeMenu();
+            }
         });
     </script>
 
