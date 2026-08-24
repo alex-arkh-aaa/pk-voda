@@ -292,7 +292,7 @@
             color: var(--purple);
         }
 
-        /* ===== ГЕРОЙ С БОКОВЫМИ ЭЛЕМЕНТАМИ ===== */
+        /* ===== ГЕРОЙ ===== */
         .hero {
             background: linear-gradient(135deg, var(--white) 0%, var(--light-blue) 40%, var(--purple-light) 70%, var(--white) 100%);
             padding: 60px 0 40px;
@@ -329,14 +329,14 @@
         .hero-content {
             position: relative;
             z-index: 1;
-            max-width: 900px;
+            max-width: 750px;
             margin: 0 auto;
         }
 
         .hero-content h1 {
-            font-size: 52px;
+            font-size: 48px;
             font-weight: 900;
-            line-height: 1.15;
+            line-height: 1.2;
             color: var(--blue);
             margin-bottom: 16px;
             letter-spacing: -1px;
@@ -357,7 +357,7 @@
             font-weight: 500;
             color: #475569;
             margin-bottom: 28px;
-            max-width: 650px;
+            max-width: 580px;
             margin-left: auto;
             margin-right: auto;
             letter-spacing: 0.2px;
@@ -406,94 +406,6 @@
             font-size: 140px;
             color: var(--sky-blue);
             filter: drop-shadow(0 10px 20px rgba(26, 79, 138, 0.2));
-        }
-
-        /* ===== БОКОВЫЕ ЭЛЕМЕНТЫ ===== */
-        .hero-side-left {
-            position: absolute;
-            left: 24px;
-            top: 50%;
-            transform: translateY(-50%);
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-            z-index: 2;
-        }
-
-        .hero-side-left .side-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(8px);
-            padding: 12px 18px;
-            border-radius: 12px;
-            box-shadow: var(--shadow);
-            border-left: 3px solid var(--purple);
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--blue);
-            animation: floatLeft 3s ease-in-out infinite;
-        }
-
-        .hero-side-left .side-item i {
-            font-size: 20px;
-            color: var(--purple);
-        }
-
-        .hero-side-right {
-            position: absolute;
-            right: 24px;
-            top: 50%;
-            transform: translateY(-50%);
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            z-index: 2;
-            text-align: right;
-        }
-
-        .hero-side-right .side-number {
-            font-size: 28px;
-            font-weight: 900;
-            background: linear-gradient(135deg, var(--sky-blue), var(--purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: block;
-        }
-
-        .hero-side-right .side-label {
-            font-size: 13px;
-            font-weight: 500;
-            color: #64748b;
-            display: block;
-        }
-
-        .hero-side-right .side-item {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(8px);
-            padding: 12px 18px;
-            border-radius: 12px;
-            box-shadow: var(--shadow);
-            border-right: 3px solid var(--sky-blue);
-            animation: floatRight 3s ease-in-out infinite;
-        }
-
-        .hero-side-right .side-item:nth-child(2) { animation-delay: 0.5s; }
-        .hero-side-right .side-item:nth-child(3) { animation-delay: 1s; }
-        .hero-side-right .side-item:nth-child(4) { animation-delay: 1.5s; }
-        .hero-side-left .side-item:nth-child(2) { animation-delay: 0.7s; }
-        .hero-side-left .side-item:nth-child(3) { animation-delay: 1.4s; }
-        .hero-side-left .side-item:nth-child(4) { animation-delay: 2.1s; }
-
-        @keyframes floatLeft {
-            0%, 100% { transform: translateX(0); }
-            50% { transform: translateX(-6px); }
-        }
-
-        @keyframes floatRight {
-            0%, 100% { transform: translateX(0); }
-            50% { transform: translateX(6px); }
         }
 
         /* ===== КНОПКИ ===== */
@@ -612,66 +524,6 @@
             font-size: 20px;
             width: 28px;
             text-align: center;
-        }
-
-        .production-image {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-        }
-
-        .production-image .card {
-            background: var(--white);
-            padding: 28px 20px;
-            border-radius: var(--radius);
-            text-align: center;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            border: 1px solid rgba(124, 58, 237, 0.08);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .production-image .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--sky-blue), var(--purple));
-            transform: scaleX(0);
-            transition: var(--transition);
-        }
-
-        .production-image .card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .production-image .card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 40px rgba(26, 79, 138, 0.12);
-        }
-
-        .production-image .card i {
-            font-size: 40px;
-            background: linear-gradient(135deg, var(--sky-blue), var(--purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 12px;
-        }
-
-        .production-image .card h4 {
-            font-size: 17px;
-            font-weight: 700;
-            color: var(--blue);
-            margin-bottom: 4px;
-        }
-
-        .production-image .card p {
-            font-size: 14px;
-            font-weight: 500;
-            color: #64748b;
         }
 
         /* ===== ПРЕИМУЩЕСТВА ===== */
@@ -838,7 +690,7 @@
             display: block;
         }
 
-        /* ===== БОЛЬШАЯ КНОПКА ПОД КАРТОЙ (ПО ЦЕНТРУ) ===== */
+        /* ===== БОЛЬШАЯ КНОПКА ПОД КАРТОЙ ===== */
         .bottom-cta {
             text-align: center;
             margin-top: 50px;
@@ -1039,13 +891,6 @@
             }
         }
 
-        @media (max-width: 1200px) {
-            .hero-side-left,
-            .hero-side-right {
-                display: none !important;
-            }
-        }
-
         @media (max-width: 992px) {
             .hero-content h1 {
                 font-size: 38px;
@@ -1081,12 +926,6 @@
                 display: block;
             }
 
-            /* Убираем боковые элементы на телефоне */
-            .hero-side-left,
-            .hero-side-right {
-                display: none !important;
-            }
-
             .hero-content h1 {
                 font-size: 30px;
             }
@@ -1100,10 +939,6 @@
                 font-size: 100px;
             }
 
-            .production-image {
-                grid-template-columns: 1fr 1fr;
-            }
-
             .contacts-form {
                 padding: 24px;
             }
@@ -1113,7 +948,6 @@
                 text-align: center;
             }
 
-            /* ===== БЛОКИ ПРЕИМУЩЕСТВ НА ТЕЛЕФОНЕ (МЕНЬШЕ) ===== */
             .features-grid {
                 grid-template-columns: 1fr;
                 gap: 16px;
@@ -1154,10 +988,6 @@
         }
 
         @media (max-width: 480px) {
-            .production-image {
-                grid-template-columns: 1fr;
-            }
-
             .hero-image .bottle-wrapper {
                 width: 160px;
                 height: 160px;
@@ -1248,46 +1078,6 @@
 
     <!-- ===== ГЛАВНАЯ ===== -->
     <section class="hero" id="main">
-        <!-- БОКОВЫЕ ЭЛЕМЕНТЫ (СЛЕВА) -->
-        <div class="hero-side-left">
-            <div class="side-item">
-                <i class="fas fa-tint"></i>
-                <span>Артезианская вода</span>
-            </div>
-            <div class="side-item">
-                <i class="fas fa-award"></i>
-                <span>Сертификаты ГОСТ</span>
-            </div>
-            <div class="side-item">
-                <i class="fas fa-truck"></i>
-                <span>Гибкая логистика</span>
-            </div>
-            <div class="side-item">
-                <i class="fas fa-handshake"></i>
-                <span>Надёжный партнёр</span>
-            </div>
-        </div>
-
-        <!-- БОКОВЫЕ ЭЛЕМЕНТЫ (СПРАВА) -->
-        <div class="hero-side-right">
-            <div class="side-item">
-                <span class="side-number">15+</span>
-                <span class="side-label">лет на рынке</span>
-            </div>
-            <div class="side-item">
-                <span class="side-number">6000</span>
-                <span class="side-label">бут./смена</span>
-            </div>
-            <div class="side-item">
-                <span class="side-number">100%</span>
-                <span class="side-label">качество</span>
-            </div>
-            <div class="side-item">
-                <span class="side-number">24/7</span>
-                <span class="side-label">отгрузка</span>
-            </div>
-        </div>
-
         <div class="container">
             <div class="hero-content">
                 <h1>
@@ -1345,28 +1135,7 @@
                         <li><i class="fas fa-check-circle"></i> Сертификаты ГОСТ и Роспотребнадзора</li>
                     </ul>
                 </div>
-                <div class="production-image">
-                    <div class="card">
-                        <i class="fas fa-tint"></i>
-                        <h4>Источник</h4>
-                        <p>Артезианская вода</p>
-                    </div>
-                    <div class="card">
-                        <i class="fas fa-flask"></i>
-                        <h4>Лаборатория</h4>
-                        <p>Ежедневный анализ</p>
-                    </div>
-                    <div class="card">
-                        <i class="fas fa-industry"></i>
-                        <h4>Производство</h4>
-                        <p>Автоматизированная линия</p>
-                    </div>
-                    <div class="card">
-                        <i class="fas fa-award"></i>
-                        <h4>Качество</h4>
-                        <p>ГОСТ и сертификаты</p>
-                    </div>
-                </div>
+                <div class="production-image" style="display: none;"></div>
             </div>
         </div>
     </section>
@@ -1453,10 +1222,10 @@
                 <div>
                     <!-- КАРТА -->
                     <div class="map-wrapper">
-                        <iframe src="https://yandex.ru/maps-widget/v1/?um=constructor%3A1f2a3b4c5d6e7f8g9h0i1j2k3l4m5n6o7p8q9r0s1t2u3v4w5x6y7z8a9b0c&amp;source=constructor" frameborder="0"></iframe>
+                        <iframe src="https://yandex.ru/map-widget/v1/?ll=37.3500,55.8833&z=16&pt=37.3500,55.8833,pm2rdl" frameborder="0"></iframe>
                     </div>
 
-                    <!-- ===== БОЛЬШАЯ КНОПКА ПОД КАРТОЙ (ПО ЦЕНТРУ) ===== -->
+                    <!-- ===== БОЛЬШАЯ КНОПКА ПОД КАРТОЙ ===== -->
                     <div class="bottom-cta">
                         <p>Готовы обсудить условия поставки?</p>
                         <button class="btn btn-purple btn-large" id="bottomBtnOpen">
