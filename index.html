@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>АкваЛайн — оптовые поставки воды 19 л</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <style>
+        /* ===== ОБНУЛЕНИЕ И ПЕРЕМЕННЫЕ ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --white: #ffffff;
+            --blue: #1a4f8a;
+            --light-blue: #e8f2fc;
+            --sky-blue: #4a9be0;
+            --gray: #f8fafc;
+            --dark-gray: #2d3748;
+            --text: #1e293b;
+            --shadow: 0 10px 30px -10px rgba(26, 79, 138, 0.15);
+            --radius: 16px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            background: var(--gray);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ===== ШАПКА / НАВИГАЦИЯ ===== */
+        .header {
+            background: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid var(--sky-blue);
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--blue);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .logo i {
+            font-size: 32px;
+            color: var(--sky-blue);
+        }
+
+        .logo span {
+            background: linear-gradient(135deg, var(--blue), var(--sky-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .nav a {
+            padding: 8px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            color: var(--text);
+            transition: var(--transition);
+            font-size: 15px;
+        }
+
+        .nav a:hover {
+            background: var(--light-blue);
+            color: var(--blue);
+        }
+
+        .nav a.cta-nav {
+            background: var(--blue);
+            color: var(--white);
+            padding: 10px 28px;
+            box-shadow: 0 4px 12px rgba(26, 79, 138, 0.25);
+        }
+
+        .nav a.cta-nav:hover {
+            background: var(--sky-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(26, 79, 138, 0.3);
+        }
+
+        .burger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 4px;
+        }
+
+        .burger span {
+            display: block;
+            width: 28px;
+            height: 3px;
+            background: var(--blue);
+            border-radius: 3px;
+            transition: var(--transition);
+        }
+
+        /* ===== ГЕРОЙ ===== */
+        .hero {
+            background: linear-gradient(135deg, var(--white) 0%, var(--light-blue) 100%);
+            padding: 80px 0;
+            border-bottom: 1px solid rgba(26, 79, 138, 0.08);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 44px;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--blue);
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .hero-content h1 .highlight {
+            background: linear-gradient(135deg, var(--sky-blue), var(--blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-content p {
+            font-size: 20px;
+            color: #475569;
+            margin-bottom: 32px;
+            max-width: 520px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 36px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 16px;
+            text-decoration: none;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--blue);
+            color: var(--white);
+            box-shadow: 0 6px 20px rgba(26, 79, 138, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--sky-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(26, 79, 138, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--blue);
+            border: 2px solid var(--blue);
+        }
+
+        .btn-outline:hover {
+            background: var(--blue);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-image .bottle-wrapper {
+            background: linear-gradient(145deg, var(--white), var(--light-blue));
+            border-radius: 50%;
+            width: 380px;
+            height: 380px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 30px 60px rgba(26, 79, 138, 0.12);
+            border: 2px solid rgba(74, 155, 224, 0.15);
+        }
+
+        .hero-image .bottle-wrapper i {
+            font-size: 200px;
+            color: var(--sky-blue);
+            filter: drop-shadow(0 10px 20px rgba(26, 79, 138, 0.2));
+        }
+
+        /* ===== СЕКЦИИ ===== */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--blue);
+            text-align: center;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #64748b;
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 48px;
+        }
+
+        /* ===== ПРОИЗВОДСТВО ===== */
+        .production-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .production-text p {
+            font-size: 17px;
+            color: #334155;
+            margin-bottom: 20px;
+        }
+
+        .production-text ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .production-text ul li {
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 16px;
+            border-bottom: 1px solid rgba(26, 79, 138, 0.06);
+        }
+
+        .production-text ul li:last-child {
+            border-bottom: none;
+        }
+
+        .production-text ul li i {
+            color: var(--sky-blue);
+            font-size: 20px;
+            width: 28px;
+            text-align: center;
+        }
+
+        .production-image {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .production-image .card {
+            background: var(--white);
+            padding: 28px 20px;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(74, 155, 224, 0.08);
+        }
+
+        .production-image .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(26, 79, 138, 0.12);
+        }
+
+        .production-image .card i {
+            font-size: 40px;
+            color: var(--sky-blue);
+            margin-bottom: 12px;
+        }
+
+        .production-image .card h4 {
+            font-size: 16px;
+            color: var(--blue);
+            margin-bottom: 4px;
+        }
+
+        .production-image .card p {
+            font-size: 14px;
+            color: #64748b;
+        }
+
+        /* ===== ПРЕИМУЩЕСТВА ДЛЯ БИЗНЕСА ===== */
+        .business-features {
+            background: var(--white);
+            border-top: 1px solid rgba(26, 79, 138, 0.06);
+            border-bottom: 1px solid rgba(26, 79, 138, 0.06);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 24px 16px;
+            border-radius: var(--radius);
+            background: var(--gray);
+            transition: var(--transition);
+        }
+
+        .feature-item:hover {
+            background: var(--light-blue);
+            transform: scale(1.02);
+        }
+
+        .feature-item .number {
+            font-size: 40px;
+            font-weight: 700;
+            color: var(--sky-blue);
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .feature-item h4 {
+            font-size: 18px;
+            color: var(--blue);
+            margin-bottom: 6px;
+        }
+
+        .feature-item p {
+            font-size: 15px;
+            color: #64748b;
+        }
+
+        /* ===== ОПТОВЫМ КЛИЕНТАМ (доп. блок) ===== */
+        .wholesale {
+            background: var(--light-blue);
+        }
+
+        .wholesale .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .wholesale-text h2 {
+            font-size: 34px;
+            color: var(--blue);
+            margin-bottom: 16px;
+        }
+
+        .wholesale-text p {
+            font-size: 17px;
+            color: #334155;
+            margin-bottom: 24px;
+        }
+
+        .wholesale-text ul {
+            list-style: none;
+        }
+
+        .wholesale-text ul li {
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 16px;
+            border-bottom: 1px solid rgba(26, 79, 138, 0.08);
+        }
+
+        .wholesale-text ul li i {
+            color: var(--blue);
+            font-size: 20px;
+            width: 28px;
+            text-align: center;
+        }
+
+        .wholesale-image {
+            display: flex;
+            justify-content: center;
+        }
+
+        .wholesale-image i {
+            font-size: 160px;
+            color: var(--blue);
+            opacity: 0.3;
+        }
+
+        /* ===== КОНТАКТЫ ===== */
+        .contacts-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .contacts-info {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .contacts-info .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            background: var(--white);
+            padding: 20px 28px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border-left: 4px solid var(--sky-blue);
+        }
+
+        .contacts-info .contact-item:hover {
+            transform: translateX(6px);
+        }
+
+        .contacts-info .contact-item i {
+            font-size: 24px;
+            color: var(--sky-blue);
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--light-blue);
+            border-radius: 50%;
+        }
+
+        .contacts-info .contact-item .text {
+            flex: 1;
+        }
+
+        .contacts-info .contact-item .text h4 {
+            font-size: 14px;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 2px;
+        }
+
+        .contacts-info .contact-item .text p {
+            font-size: 17px;
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        .contacts-form {
+            background: var(--white);
+            padding: 40px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(74, 155, 224, 0.08);
+        }
+
+        .contacts-form h3 {
+            font-size: 22px;
+            color: var(--blue);
+            margin-bottom: 8px;
+        }
+
+        .contacts-form p {
+            color: #64748b;
+            margin-bottom: 24px;
+        }
+
+        .contacts-form .form-group {
+            margin-bottom: 18px;
+        }
+
+        .contacts-form label {
+            display: block;
+            font-weight: 500;
+            font-size: 14px;
+            color: var(--text);
+            margin-bottom: 6px;
+        }
+
+        .contacts-form input,
+        .contacts-form textarea,
+        .contacts-form select {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 15px;
+            font-family: inherit;
+            transition: var(--transition);
+            background: var(--gray);
+        }
+
+        .contacts-form input:focus,
+        .contacts-form textarea:focus,
+        .contacts-form select:focus {
+            outline: none;
+            border-color: var(--sky-blue);
+            box-shadow: 0 0 0 4px rgba(74, 155, 224, 0.15);
+            background: var(--white);
+        }
+
+        .contacts-form textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .contacts-form .btn {
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* ===== ПОДВАЛ ===== */
+        .footer {
+            background: var(--blue);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 40px 0;
+            margin-top: 20px;
+        }
+
+        .footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .footer .logo {
+            color: var(--white);
+        }
+        .footer .logo span {
+            -webkit-text-fill-color: var(--white);
+        }
+
+        .footer .socials {
+            display: flex;
+            gap: 16px;
+        }
+
+        .footer .socials a {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 22px;
+            transition: var(--transition);
+        }
+
+        .footer .socials a:hover {
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .footer small {
+            font-size: 14px;
+        }
+
+        /* ===== АДАПТИВ ===== */
+        @media (max-width: 992px) {
+            .hero-grid { grid-template-columns: 1fr; text-align: center; }
+            .hero-content p { margin: 0 auto 32px; }
+            .hero-buttons { justify-content: center; }
+            .hero-image .bottle-wrapper { width: 260px; height: 260px; }
+            .hero-image .bottle-wrapper i { font-size: 140px; }
+            .production-grid { grid-template-columns: 1fr; }
+            .wholesale .container { grid-template-columns: 1fr; text-align: center; }
+            .wholesale-text ul { text-align: left; }
+            .contacts-grid { grid-template-columns: 1fr; }
+            .section-title { font-size: 30px; }
+        }
+
+        @media (max-width: 768px) {
+            .nav {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: var(--white);
+                padding: 20px 24px;
+                box-shadow: var(--shadow);
+                gap: 8px;
+                border-top: 2px solid var(--light-blue);
+            }
+            .nav.open { display: flex; }
+            .nav a { width: 100%; padding: 12px 20px; }
+            .nav a.cta-nav { width: 100%; text-align: center; }
+            .burger { display: flex; }
+            .hero-content h1 { font-size: 32px; }
+            .production-image { grid-template-columns: 1fr 1fr; }
+            .contacts-form { padding: 24px; }
+            .footer .container { flex-direction: column; text-align: center; }
+            .features-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 480px) {
+            .production-image { grid-template-columns: 1fr; }
+            .hero-image .bottle-wrapper { width: 200px; height: 200px; }
+            .hero-image .bottle-wrapper i { font-size: 100px; }
+            .hero-content h1 { font-size: 28px; }
+            .btn { padding: 14px 28px; font-size: 15px; }
+            .section { padding: 50px 0; }
+            .features-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== ШАПКА ===== -->
+    <header class="header">
+        <div class="container">
+            <a href="#" class="logo">
+                <i class="fas fa-water"></i>
+                <span>АкваЛайн</span>
+            </a>
+
+            <button class="burger" id="burgerBtn" aria-label="Меню">
+                <span></span><span></span><span></span>
+            </button>
+
+            <nav class="nav" id="navMenu">
+                <a href="#main">Главная</a>
+                <a href="#production">Наше производство</a>
+                <a href="#wholesale">Оптовым клиентам</a>
+                <a href="#contacts">Контакты</a>
+                <a href="#contacts" class="cta-nav">Оставить заявку</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ===== ГЛАВНАЯ ===== -->
+    <section class="hero" id="main">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <h1>
+                        Надёжный поставщик<br />
+                        <span class="highlight">питьевой воды 19 л</span> для бизнеса
+                    </h1>
+                    <p>
+                        Работаем с оптовыми покупателями, логистическими компаниями
+                        и розничными сетями. Стабильные поставки, полный пакет документов,
+                        высокое качество.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#contacts" class="btn btn-primary">
+                            <i class="fas fa-file-signature"></i> Запросить коммерческое предложение
+                        </a>
+                        <a href="#wholesale" class="btn btn-outline">
+                            <i class="fas fa-chevron-circle-right"></i> Узнать условия
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="bottle-wrapper">
+                        <i class="fas fa-wine-bottle"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== НАШЕ ПРОИЗВОДСТВО ===== -->
+    <section class="section" id="production">
+        <div class="container">
+            <h2 class="section-title">Наше производство</h2>
+            <p class="section-subtitle">
+                Современный завод полного цикла — от скважины до готовой продукции
+            </p>
+
+            <div class="production-grid">
+                <div class="production-text">
+                    <p>
+                        Вода добывается из собственной артезианской скважины глубиной 120 метров.
+                        Производство оснащено автоматической линией розлива производительностью
+                        до 6 000 бутылей в смену.
+                    </p>
+                    <p>
+                        Каждая партия проходит многоступенчатую фильтрацию и контроль в собственной
+                        лаборатории. Имеем все необходимые сертификаты и декларации для поставок
+                        в торговые сети.
+                    </p>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Артезианская скважина 120 м</li>
+                        <li><i class="fas fa-check-circle"></i> Производительность 6 000 бут./смена</li>
+                        <li><i class="fas fa-check-circle"></i> 5 ступеней очистки + ультрафиолет</li>
+                        <li><i class="fas fa-check-circle"></i> Собственная лаборатория контроля</li>
+                        <li><i class="fas fa-check-circle"></i> Сертификаты ГОСТ и Роспотребнадзора</li>
+                    </ul>
+                </div>
+                <div class="production-image">
+                    <div class="card">
+                        <i class="fas fa-tint"></i>
+                        <h4>Источник</h4>
+                        <p>Артезианская вода</p>
+                    </div>
+                    <div class="card">
+                        <i class="fas fa-flask"></i>
+                        <h4>Лаборатория</h4>
+                        <p>Ежедневный анализ</p>
+                    </div>
+                    <div class="card">
+                        <i class="fas fa-industry"></i>
+                        <h4>Производство</h4>
+                        <p>Автоматизированная линия</p>
+                    </div>
+                    <div class="card">
+                        <i class="fas fa-award"></i>
+                        <h4>Качество</h4>
+                        <p>ГОСТ и сертификаты</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ПРЕИМУЩЕСТВА ДЛЯ БИЗНЕСА (цифры) ===== -->
+    <section class="section business-features">
+        <div class="container">
+            <h2 class="section-title">Почему выбирают нас оптовые клиенты</h2>
+            <p class="section-subtitle">
+                Мы ценим долгосрочные отношения и предлагаем стабильные условия для вашего бизнеса
+            </p>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <span class="number">15+</span>
+                    <h4>Лет на рынке</h4>
+                    <p>Опыт поставок крупным заказчикам</p>
+                </div>
+                <div class="feature-item">
+                    <span class="number">5000</span>
+                    <h4>Бутылей в день</h4>
+                    <p>Среднесуточный объём производства</p>
+                </div>
+                <div class="feature-item">
+                    <span class="number">100%</span>
+                    <h4>Гарантия качества</h4>
+                    <p>Каждая партия сертифицирована</p>
+                </div>
+                <div class="feature-item">
+                    <span class="number">24/7</span>
+                    <h4>Отгрузка</h4>
+                    <p>Гибкий график под ваш график</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ОПТОВЫМ КЛИЕНТАМ ===== -->
+    <section class="section wholesale" id="wholesale">
+        <div class="container">
+            <div class="wholesale-text">
+                <h2>Работаем с оптом от 100 бутылей</h2>
+                <p>
+                    Мы понимаем специфику бизнеса и предлагаем выгодные условия для крупных заказчиков:
+                </p>
+                <ul>
+                    <li><i class="fas fa-check"></i> Индивидуальные цены и график поставок</li>
+                    <li><i class="fas fa-check"></i> Полный пакет закрывающих документов</li>
+                    <li><i class="fas fa-check"></i> Возможность самовывоза или доставка до вашего склада</li>
+                    <li><i class="fas fa-check"></i> Предоставление образцов для тестов</li>
+                    <li><i class="fas fa-check"></i> Постоянное наличие на складе</li>
+                </ul>
+                <br />
+                <a href="#contacts" class="btn btn-primary">
+                    <i class="fas fa-paper-plane"></i> Получить коммерческое предложение
+                </a>
+            </div>
+            <div class="wholesale-image">
+                <i class="fas fa-handshake"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== КОНТАКТЫ ===== -->
+    <section class="section" id="contacts">
+        <div class="container">
+            <h2 class="section-title">Свяжитесь с нами</h2>
+            <p class="section-subtitle">
+                Заполните форму, и наш менеджер свяжется с вами для обсуждения условий
+            </p>
+
+            <div class="contacts-grid">
+                <div class="contacts-info">
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div class="text">
+                            <h4>Телефон</h4>
+                            <p><a href="tel:+78001234567" style="color: var(--text); text-decoration: none;">+7 (800) 123-45-67</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div class="text">
+                            <h4>Email</h4>
+                            <p><a href="mailto:info@akvalain.ru" style="color: var(--text); text-decoration: none;">info@akvalain.ru</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div class="text">
+                            <h4>Адрес</h4>
+                            <p>г. Москва, ул. Промышленная, д. 15</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div class="text">
+                            <h4>Часы работы</h4>
+                            <p>Пн–Пт: 08:00 – 20:00<br />Сб–Вс: 09:00 – 18:00</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contacts-form">
+                    <h3>Заявка для оптового заказа</h3>
+                    <p>Заполните поля, и мы подготовим для вас персональное предложение</p>
+
+                    <!-- ⚠️ ЗДЕСЬ СМЕНИТЕ ACTION НА ВАШ СЕРВИС (например, FormSubmit) -->
+                    <form action="https://formsubmit.co/ваша@почта.com" method="POST">
+                        <div class="form-group">
+                            <label for="company">Название компании *</label>
+                            <input type="text" id="company" name="company" placeholder="ООО «Родник»" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="contact_person">Контактное лицо *</label>
+                            <input type="text" id="contact_person" name="contact_person" placeholder="Иван Петров" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Телефон *</label>
+                            <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___ - __ - __" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" placeholder="info@company.ru" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="volume">Планируемый объём (бутылей в месяц)</label>
+                            <select id="volume" name="volume">
+                                <option value="100-500">100 – 500</option>
+                                <option value="500-1000">500 – 1 000</option>
+                                <option value="1000-5000">1 000 – 5 000</option>
+                                <option value="5000+">более 5 000</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Комментарий</label>
+                            <textarea id="message" name="message" placeholder="Дополнительные пожелания..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-file-invoice"></i> Отправить заявку
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ПОДВАЛ ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-water"></i>
+                <span>АкваЛайн</span>
+            </div>
+            <small>&copy; 2026 АкваЛайн. Все права защищены.</small>
+            <div class="socials">
+                <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+                <a href="#" aria-label="VK"><i class="fab fa-vk"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== СКРИПТ ===== -->
+    <script>
+        // Бургер-меню
+        const burger = document.getElementById('burgerBtn');
+        const nav = document.getElementById('navMenu');
+
+        burger.addEventListener('click', function () {
+            nav.classList.toggle('open');
+            const spans = this.querySelectorAll('span');
+            if (nav.classList.contains('open')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            }
+        });
+
+        document.querySelectorAll('.nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('open');
+                const spans = burger.querySelectorAll('span');
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            });
+        });
+    </script>
+
+</body>
+</html>
