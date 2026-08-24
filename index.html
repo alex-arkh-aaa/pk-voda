@@ -3,24 +3,17 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Чистая Вода — оптовые поставки воды 19 л</title>
+    <title>АкваЛайн — оптовые поставки воды 19 л</title>
 
-    <!-- Подключаем шрифт Kharkiv-Tone (аналог, так как оригинал платный) -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <!-- ===== ПОДКЛЮЧЕНИЕ MONTSERRAT ===== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
     <style>
-        /* ===== ПОДКЛЮЧЕНИЕ ШРИФТА ===== */
-        /* Используем похожий шрифт с настройками под Kharkiv-Tone */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-
-        @font-face {
-            font-family: 'Kharkiv-Tone';
-            src: local('Inter'), local('Arial Black');
-            font-weight: normal;
-            font-style: normal;
-        }
-
+        /* ===== ОБНУЛЕНИЕ ===== */
         * {
             margin: 0;
             padding: 0;
@@ -36,7 +29,6 @@
             --purple-light: #ede9fe;
             --purple-dark: #5b21b6;
             --gray: #f8fafc;
-            --dark-gray: #2d3748;
             --text: #1e293b;
             --shadow: 0 10px 30px -10px rgba(26, 79, 138, 0.15);
             --shadow-purple: 0 10px 30px -10px rgba(124, 58, 237, 0.25);
@@ -49,10 +41,13 @@
         }
 
         body {
-            font-family: 'Kharkiv-Tone', 'Inter', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             color: var(--text);
             background: var(--gray);
-            line-height: 1.6;
+            line-height: 1.7;
+            font-weight: 500;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         .container {
@@ -78,7 +73,7 @@
             opacity: 0.5;
         }
 
-        /* ===== ШАПКА / НАВИГАЦИЯ ===== */
+        /* ===== ШАПКА / НАВИГАЦИЯ (sticky) ===== */
         .header {
             background: var(--white);
             box-shadow: var(--shadow);
@@ -86,7 +81,6 @@
             top: 0;
             z-index: 1000;
             border-bottom: 3px solid var(--purple);
-            position: relative;
         }
 
         .header .container {
@@ -100,8 +94,8 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            font-size: 24px;
-            font-weight: 800;
+            font-size: 26px;
+            font-weight: 900;
             color: var(--blue);
             text-decoration: none;
             letter-spacing: -0.5px;
@@ -109,7 +103,7 @@
         }
 
         .logo i {
-            font-size: 32px;
+            font-size: 34px;
             color: var(--sky-blue);
         }
 
@@ -135,11 +129,12 @@
             padding: 8px 18px;
             border-radius: 50px;
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
             color: var(--text);
             transition: var(--transition);
             font-size: 15px;
             position: relative;
+            letter-spacing: 0.3px;
         }
 
         .nav a::after {
@@ -149,10 +144,10 @@
             left: 50%;
             transform: translateX(-50%);
             width: 0;
-            height: 2px;
+            height: 3px;
             background: linear-gradient(90deg, var(--sky-blue), var(--purple));
             transition: var(--transition);
-            border-radius: 2px;
+            border-radius: 3px;
         }
 
         .nav a:hover::after {
@@ -171,6 +166,7 @@
             padding: 8px 24px;
             box-shadow: none;
             transition: var(--transition);
+            font-weight: 700;
         }
 
         .nav a.cta-nav:hover {
@@ -184,7 +180,7 @@
             display: none;
         }
 
-        /* ===== БУРГЕР-МЕНЮ (ПЛАВНОЕ) ===== */
+        /* ===== БУРГЕР-МЕНЮ ===== */
         .burger {
             display: none;
             flex-direction: column;
@@ -206,7 +202,6 @@
             transition: var(--transition);
         }
 
-        /* Мобильное меню */
         .mobile-menu {
             display: none;
             position: fixed;
@@ -230,7 +225,7 @@
             position: fixed;
             top: 0;
             left: -100%;
-            width: 280px;
+            width: 300px;
             height: 100vh;
             background: var(--white);
             padding: 80px 32px 40px;
@@ -250,10 +245,11 @@
             padding: 14px 20px;
             border-radius: 12px;
             text-decoration: none;
-            font-weight: 500;
-            font-size: 17px;
+            font-weight: 600;
+            font-size: 18px;
             color: var(--text);
             transition: var(--transition);
+            letter-spacing: 0.3px;
         }
 
         .mobile-menu-content a:hover {
@@ -267,6 +263,7 @@
             border: 2px solid var(--purple);
             text-align: center;
             margin-top: 12px;
+            font-weight: 700;
         }
 
         .mobile-menu-content a.cta-nav:hover {
@@ -323,9 +320,9 @@
         }
 
         .hero-content h1 {
-            font-size: 44px;
-            font-weight: 800;
-            line-height: 1.2;
+            font-size: 48px;
+            font-weight: 900;
+            line-height: 1.15;
             color: var(--blue);
             margin-bottom: 20px;
             letter-spacing: -1px;
@@ -339,9 +336,11 @@
 
         .hero-content p {
             font-size: 20px;
+            font-weight: 500;
             color: #475569;
             margin-bottom: 32px;
             max-width: 520px;
+            letter-spacing: 0.2px;
         }
 
         .hero-buttons {
@@ -356,13 +355,14 @@
             gap: 10px;
             padding: 16px 36px;
             border-radius: 50px;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 16px;
             text-decoration: none;
             transition: var(--transition);
             border: none;
             cursor: pointer;
-            font-family: inherit;
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 0.3px;
         }
 
         .btn-primary {
@@ -431,7 +431,7 @@
         }
 
         .section-title {
-            font-size: 36px;
+            font-size: 38px;
             font-weight: 800;
             color: var(--blue);
             text-align: center;
@@ -443,8 +443,10 @@
             text-align: center;
             color: #64748b;
             font-size: 18px;
+            font-weight: 500;
             max-width: 700px;
             margin: 0 auto 48px;
+            letter-spacing: 0.2px;
         }
 
         /* ===== ПРОИЗВОДСТВО ===== */
@@ -457,8 +459,10 @@
 
         .production-text p {
             font-size: 17px;
+            font-weight: 500;
             color: #334155;
             margin-bottom: 20px;
+            letter-spacing: 0.2px;
         }
 
         .production-text ul {
@@ -472,6 +476,7 @@
             align-items: center;
             gap: 14px;
             font-size: 16px;
+            font-weight: 500;
             border-bottom: 1px solid rgba(26, 79, 138, 0.06);
         }
 
@@ -534,13 +539,15 @@
         }
 
         .production-image .card h4 {
-            font-size: 16px;
+            font-size: 17px;
+            font-weight: 700;
             color: var(--blue);
             margin-bottom: 4px;
         }
 
         .production-image .card p {
             font-size: 14px;
+            font-weight: 500;
             color: #64748b;
         }
 
@@ -604,8 +611,8 @@
         }
 
         .feature-item .number {
-            font-size: 40px;
-            font-weight: 800;
+            font-size: 44px;
+            font-weight: 900;
             background: linear-gradient(135deg, var(--sky-blue), var(--purple));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -614,13 +621,15 @@
         }
 
         .feature-item h4 {
-            font-size: 18px;
+            font-size: 19px;
+            font-weight: 700;
             color: var(--blue);
             margin-bottom: 6px;
         }
 
         .feature-item p {
             font-size: 15px;
+            font-weight: 500;
             color: #64748b;
         }
 
@@ -672,6 +681,7 @@
 
         .contacts-info .contact-item .text h4 {
             font-size: 14px;
+            font-weight: 600;
             color: #94a3b8;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -680,7 +690,7 @@
 
         .contacts-info .contact-item .text p {
             font-size: 17px;
-            font-weight: 500;
+            font-weight: 600;
             color: var(--text);
         }
 
@@ -693,13 +703,15 @@
         }
 
         .contacts-form h3 {
-            font-size: 22px;
+            font-size: 24px;
+            font-weight: 700;
             color: var(--blue);
             margin-bottom: 8px;
         }
 
         .contacts-form p {
             color: #64748b;
+            font-weight: 500;
             margin-bottom: 24px;
         }
 
@@ -709,10 +721,11 @@
 
         .contacts-form label {
             display: block;
-            font-weight: 500;
+            font-weight: 600;
             font-size: 14px;
             color: var(--text);
             margin-bottom: 6px;
+            letter-spacing: 0.2px;
         }
 
         .contacts-form input,
@@ -723,7 +736,8 @@
             border: 2px solid #e2e8f0;
             border-radius: 12px;
             font-size: 15px;
-            font-family: inherit;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
             transition: var(--transition);
             background: var(--gray);
         }
@@ -788,11 +802,11 @@
 
         .footer small {
             font-size: 14px;
+            font-weight: 400;
         }
 
         /* ===== АДАПТИВ ===== */
         @media (min-width: 769px) {
-            /* Меню слева на ПК */
             .header .container {
                 justify-content: flex-start;
                 gap: 40px;
@@ -855,12 +869,11 @@
             }
 
             .section-title {
-                font-size: 30px;
+                font-size: 32px;
             }
         }
 
         @media (max-width: 768px) {
-            /* Показываем бургер и прячем обычное меню */
             .header .container {
                 justify-content: space-between;
             }
@@ -878,7 +891,7 @@
             }
 
             .hero-content h1 {
-                font-size: 32px;
+                font-size: 34px;
             }
 
             .production-image {
@@ -928,6 +941,10 @@
 
             .features-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 26px;
             }
         }
     </style>
@@ -1221,14 +1238,12 @@
         burger.addEventListener('click', openMenu);
         mobileMenuClose.addEventListener('click', closeMenu);
 
-        // Закрытие по клику на фон
         mobileMenu.addEventListener('click', function(e) {
             if (e.target === this) {
                 closeMenu();
             }
         });
 
-        // Закрытие по клику на ссылки
         document.querySelectorAll('.mobile-menu-content a').forEach(link => {
             link.addEventListener('click', closeMenu);
         });
@@ -1247,7 +1262,6 @@
             });
         }
 
-        // Проверяем при загрузке и при скролле
         window.addEventListener('load', () => {
             setTimeout(checkVisibility, 200);
         });
@@ -1255,7 +1269,6 @@
         window.addEventListener('scroll', checkVisibility);
         window.addEventListener('resize', checkVisibility);
 
-        // ===== ЗАКРЫТИЕ БУРГЕРА ПРИ РЕСАЙЗЕ НА ПК =====
         window.addEventListener('resize', function() {
             if (window.innerWidth > 768) {
                 closeMenu();
