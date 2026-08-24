@@ -292,7 +292,7 @@
             color: var(--purple);
         }
 
-        /* ===== ГЕРОЙ ===== */
+        /* ===== ГЕРОЙ С БОКОВЫМИ ЭЛЕМЕНТАМИ ===== */
         .hero {
             background: linear-gradient(135deg, var(--white) 0%, var(--light-blue) 40%, var(--purple-light) 70%, var(--white) 100%);
             padding: 60px 0 40px;
@@ -408,6 +408,94 @@
             filter: drop-shadow(0 10px 20px rgba(26, 79, 138, 0.2));
         }
 
+        /* ===== БОКОВЫЕ ЭЛЕМЕНТЫ ===== */
+        .hero-side-left {
+            position: absolute;
+            left: 24px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            z-index: 2;
+        }
+
+        .hero-side-left .side-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            padding: 12px 18px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            border-left: 3px solid var(--purple);
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--blue);
+            animation: floatLeft 3s ease-in-out infinite;
+        }
+
+        .hero-side-left .side-item i {
+            font-size: 20px;
+            color: var(--purple);
+        }
+
+        .hero-side-right {
+            position: absolute;
+            right: 24px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            z-index: 2;
+            text-align: right;
+        }
+
+        .hero-side-right .side-number {
+            font-size: 28px;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--sky-blue), var(--purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
+        }
+
+        .hero-side-right .side-label {
+            font-size: 13px;
+            font-weight: 500;
+            color: #64748b;
+            display: block;
+        }
+
+        .hero-side-right .side-item {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            padding: 12px 18px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            border-right: 3px solid var(--sky-blue);
+            animation: floatRight 3s ease-in-out infinite;
+        }
+
+        .hero-side-right .side-item:nth-child(2) { animation-delay: 0.5s; }
+        .hero-side-right .side-item:nth-child(3) { animation-delay: 1s; }
+        .hero-side-right .side-item:nth-child(4) { animation-delay: 1.5s; }
+        .hero-side-left .side-item:nth-child(2) { animation-delay: 0.7s; }
+        .hero-side-left .side-item:nth-child(3) { animation-delay: 1.4s; }
+        .hero-side-left .side-item:nth-child(4) { animation-delay: 2.1s; }
+
+        @keyframes floatLeft {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(-6px); }
+        }
+
+        @keyframes floatRight {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(6px); }
+        }
+
         /* ===== КНОПКИ ===== */
         .btn {
             display: inline-flex;
@@ -479,7 +567,7 @@
             letter-spacing: 0.2px;
         }
 
-        /* ===== ПРОИЗВОДСТВО (с затемнением) ===== */
+        /* ===== ПРОИЗВОДСТВО ===== */
         .section-production {
             background: linear-gradient(180deg, var(--white) 0%, var(--light-blue) 50%, var(--white) 100%);
             padding: 80px 0;
@@ -668,7 +756,7 @@
             color: #64748b;
         }
 
-        /* ===== КОНТАКТЫ (с затемнением) ===== */
+        /* ===== КОНТАКТЫ ===== */
         .section-contacts {
             background: linear-gradient(180deg, var(--white) 0%, var(--light-blue) 30%, var(--purple-light) 60%, var(--white) 100%);
             padding: 80px 0;
@@ -750,7 +838,7 @@
             display: block;
         }
 
-        /* ===== БОЛЬШАЯ КНОПКА ПОД КАРТОЙ ===== */
+        /* ===== БОЛЬШАЯ КНОПКА ПОД КАРТОЙ (ПО ЦЕНТРУ) ===== */
         .bottom-cta {
             text-align: center;
             margin-top: 50px;
@@ -951,6 +1039,13 @@
             }
         }
 
+        @media (max-width: 1200px) {
+            .hero-side-left,
+            .hero-side-right {
+                display: none !important;
+            }
+        }
+
         @media (max-width: 992px) {
             .hero-content h1 {
                 font-size: 38px;
@@ -986,6 +1081,12 @@
                 display: block;
             }
 
+            /* Убираем боковые элементы на телефоне */
+            .hero-side-left,
+            .hero-side-right {
+                display: none !important;
+            }
+
             .hero-content h1 {
                 font-size: 30px;
             }
@@ -1012,8 +1113,26 @@
                 text-align: center;
             }
 
+            /* ===== БЛОКИ ПРЕИМУЩЕСТВ НА ТЕЛЕФОНЕ (МЕНЬШЕ) ===== */
             .features-grid {
-                grid-template-columns: 1fr 1fr;
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .feature-item {
+                padding: 20px 16px;
+            }
+
+            .feature-item .number {
+                font-size: 32px;
+            }
+
+            .feature-item h4 {
+                font-size: 16px;
+            }
+
+            .feature-item p {
+                font-size: 13px;
             }
 
             .modal {
@@ -1026,6 +1145,10 @@
 
             .btn-large {
                 padding: 16px 32px;
+                font-size: 17px;
+            }
+
+            .bottom-cta p {
                 font-size: 17px;
             }
         }
@@ -1057,10 +1180,6 @@
                 padding: 50px 0;
             }
 
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-
             .section-title {
                 font-size: 26px;
             }
@@ -1075,6 +1194,14 @@
 
             .map-wrapper iframe {
                 height: 220px;
+            }
+
+            .feature-item {
+                padding: 16px 12px;
+            }
+
+            .feature-item .number {
+                font-size: 28px;
             }
         }
     </style>
@@ -1121,6 +1248,46 @@
 
     <!-- ===== ГЛАВНАЯ ===== -->
     <section class="hero" id="main">
+        <!-- БОКОВЫЕ ЭЛЕМЕНТЫ (СЛЕВА) -->
+        <div class="hero-side-left">
+            <div class="side-item">
+                <i class="fas fa-tint"></i>
+                <span>Артезианская вода</span>
+            </div>
+            <div class="side-item">
+                <i class="fas fa-award"></i>
+                <span>Сертификаты ГОСТ</span>
+            </div>
+            <div class="side-item">
+                <i class="fas fa-truck"></i>
+                <span>Гибкая логистика</span>
+            </div>
+            <div class="side-item">
+                <i class="fas fa-handshake"></i>
+                <span>Надёжный партнёр</span>
+            </div>
+        </div>
+
+        <!-- БОКОВЫЕ ЭЛЕМЕНТЫ (СПРАВА) -->
+        <div class="hero-side-right">
+            <div class="side-item">
+                <span class="side-number">15+</span>
+                <span class="side-label">лет на рынке</span>
+            </div>
+            <div class="side-item">
+                <span class="side-number">6000</span>
+                <span class="side-label">бут./смена</span>
+            </div>
+            <div class="side-item">
+                <span class="side-number">100%</span>
+                <span class="side-label">качество</span>
+            </div>
+            <div class="side-item">
+                <span class="side-number">24/7</span>
+                <span class="side-label">отгрузка</span>
+            </div>
+        </div>
+
         <div class="container">
             <div class="hero-content">
                 <h1>
@@ -1284,12 +1451,12 @@
                 </div>
 
                 <div>
-                    <!-- КАРТА С МЕТКОЙ НА СХОДНЕ (ХИМКИ) -->
+                    <!-- КАРТА -->
                     <div class="map-wrapper">
                         <iframe src="https://yandex.ru/maps-widget/v1/?um=constructor%3A1f2a3b4c5d6e7f8g9h0i1j2k3l4m5n6o7p8q9r0s1t2u3v4w5x6y7z8a9b0c&amp;source=constructor" frameborder="0"></iframe>
                     </div>
 
-                    <!-- ===== БОЛЬШАЯ КНОПКА ПОД КАРТОЙ ===== -->
+                    <!-- ===== БОЛЬШАЯ КНОПКА ПОД КАРТОЙ (ПО ЦЕНТРУ) ===== -->
                     <div class="bottom-cta">
                         <p>Готовы обсудить условия поставки?</p>
                         <button class="btn btn-purple btn-large" id="bottomBtnOpen">
@@ -1326,7 +1493,6 @@
             <h2>Оставить заявку</h2>
             <p>Заполните поля, и мы свяжемся с вами</p>
 
-            <!-- ⚠️ ЗДЕСЬ СМЕНИТЕ ACTION НА ВАШ СЕРВИС -->
             <form action="https://formsubmit.co/ваша@почта.com" method="POST" id="modalForm">
                 <div class="form-group">
                     <label for="modalName">Ваше имя *</label>
@@ -1389,7 +1555,6 @@
             document.body.style.overflow = '';
         }
 
-        // Открытие по кнопкам
         document.getElementById('ctaNavOpen').addEventListener('click', function(e) {
             e.preventDefault();
             openModal();
@@ -1404,13 +1569,11 @@
         document.getElementById('heroBtnOpen').addEventListener('click', openModal);
         document.getElementById('bottomBtnOpen').addEventListener('click', openModal);
 
-        // Закрытие
         modalClose.addEventListener('click', closeModal);
         modalOverlay.addEventListener('click', function(e) {
             if (e.target === this) closeModal();
         });
 
-        // Закрытие по Escape
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') closeModal();
         });
